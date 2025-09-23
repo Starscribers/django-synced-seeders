@@ -1,0 +1,18 @@
+[
+    {
+        "model": "playground.examplepresetmodel",
+        "pk": 1,
+        "fields": {
+            "name": "ONE",
+            "value": 1
+        }
+    },
+    {
+        "model": "playground.examplepresetmodel",
+        "pk": 2,
+        "fields": {
+            "name": "TWO",
+            "value": 2
+        }
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "model": "playground.examplepresetmodel",
+        "pk": 1,
+        "fields": {
+            "name": "V1 Object",
+            "value": 1
+        }
+    }
+]
