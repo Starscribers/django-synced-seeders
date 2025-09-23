@@ -31,5 +31,5 @@ repos:
         entry: mypy
         language: system
         types: [python]
-
-        args: ["--config-file", "mypy.ini", "src"]
+        exclude: ^tests/
+        args: ["--config-file", "mypy.ini"]

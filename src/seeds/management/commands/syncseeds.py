@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
         for seed_slug, seeder in seeder_registry.registry.items():
             seed_revision = data.get(seed_slug, 0)
-            original_revision = (
+            original_revision_object = (
                 SeedRevision.objects.filter(
                     seed_slug=seed_slug,
                 )
@@ -32,7 +32,9 @@ class Command(BaseCommand):
             )
 
             original_revision = (
-                original_revision.revision if original_revision else "Not installed"
+                original_revision_object.revision
+                if original_revision_object
+                else "Not installed"
             )
             if original_revision == seed_revision:
                 self.stdout.write(

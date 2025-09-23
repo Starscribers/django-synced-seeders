@@ -27,7 +27,7 @@ class Seeder:
     """
 
     # Path to the seed file (relative to Django project root)
-    seed_path: str | None = None
+    seed_path: Path | str | None = None
 
     # Unique slug identifier for the seed
     seed_slug: str = "base-seed"

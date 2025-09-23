@@ -143,6 +143,7 @@ def test_incremental_seed_updates(tmp_path):
             .order_by("-id")
             .first()
         )
+        assert latest_revision is not None
         assert latest_revision.revision == 2
 
 
@@ -178,7 +179,7 @@ def test_delete_existing_behavior(tmp_path: Path) -> None:
 
     # Should only have the seed data (existing data deleted)
     assert ExamplePresetModel.objects.count() == 1
-    assert ExamplePresetModel.objects.first().name == "Seed Data"
+    assert ExamplePresetModel.objects.get().name == "Seed Data"
 
     # Add conflicting data again
     ExamplePresetModel.objects.create(name="Existing Data Again", value=222)
@@ -275,10 +276,10 @@ def test_large_dataset_export_import() -> None:
         assert ExamplePresetModel.objects.count() == 100
 
         # Verify some sample data
-        first_obj = ExamplePresetModel.objects.filter(name="Bulk Test 0").first()
+        first_obj = ExamplePresetModel.objects.filter(name="Bulk Test 0").get()
         assert first_obj.value == 0
 
-        last_obj = ExamplePresetModel.objects.filter(name="Bulk Test 99").first()
+        last_obj = ExamplePresetModel.objects.filter(name="Bulk Test 99").get()
         assert last_obj.value == 990
 
 
@@ -295,7 +296,7 @@ def test_multiple_revisions_performance() -> None:
         .order_by("-revision")
         .first()
     )
-
+    assert latest_revision is not None
     assert latest_revision.revision == 10
 
     # Test bulk operations
