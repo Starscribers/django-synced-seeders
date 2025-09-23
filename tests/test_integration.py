@@ -12,9 +12,9 @@ from django.core.management import call_command
 from django.test import override_settings
 
 from playground.models import ExamplePresetModel
-from seeders.models import SeedRevision
-from seeders.registries import seeder_registry
-from seeders.seeders import Seeder
+from seeds.models import SeedRevision
+from seeds.registries import seeder_registry
+from seeds.seeders import Seeder
 
 
 class TestSeederForIntegration(Seeder):
@@ -26,7 +26,7 @@ class TestSeederForIntegration(Seeder):
 
 
 @pytest.mark.django_db
-def test_complete_seed_lifecycle(tmp_path):
+def test_complete_seed_lifecycle(tmp_path: Path) -> None:
     """Test complete seed lifecycle: create data -> export -> clear -> sync -> verify."""
     # Setup temporary paths
     seed_file = tmp_path / "lifecycle_test.json"
@@ -147,7 +147,7 @@ def test_incremental_seed_updates(tmp_path):
 
 
 @pytest.mark.django_db
-def test_delete_existing_behavior(tmp_path):
+def test_delete_existing_behavior(tmp_path: Path) -> None:
     """Test the delete_existing behavior during seed loading."""
     seed_file = tmp_path / "delete_test.json"
 
@@ -194,7 +194,7 @@ def test_delete_existing_behavior(tmp_path):
 
 
 @pytest.mark.django_db
-def test_missing_seed_file_handling():
+def test_missing_seed_file_handling() -> None:
     """Test handling of missing seed files."""
     with tempfile.TemporaryDirectory() as tmp_dir:
         non_existent_file = Path(tmp_dir) / "missing.json"
@@ -214,7 +214,7 @@ def test_missing_seed_file_handling():
 
 
 @pytest.mark.django_db
-def test_permission_error_handling():
+def test_permission_error_handling() -> None:
     """Test handling of permission errors during export."""
     with tempfile.TemporaryDirectory() as tmp_dir:
         readonly_file = Path(tmp_dir) / "readonly.json"
@@ -237,7 +237,7 @@ def test_permission_error_handling():
 
 
 @pytest.mark.django_db
-def test_large_dataset_export_import():
+def test_large_dataset_export_import() -> None:
     """Test with a larger dataset to verify performance."""
     # Create a moderate-sized dataset (100 objects)
     test_objects = []
@@ -283,7 +283,7 @@ def test_large_dataset_export_import():
 
 
 @pytest.mark.django_db
-def test_multiple_revisions_performance():
+def test_multiple_revisions_performance() -> None:
     """Test performance with multiple seed revisions."""
     # Create multiple revisions for the same seed
     for i in range(10):

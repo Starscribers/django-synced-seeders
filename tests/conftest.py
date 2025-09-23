@@ -82,7 +82,7 @@ def enable_db_access_for_all_tests(db):
 @pytest.fixture
 def clean_seed_revisions():
     """Clean up SeedRevision records before and after tests."""
-    from seeders.models import SeedRevision
+    from seeds.models import SeedRevision
 
     # Clean up before test
     SeedRevision.objects.all().delete()
@@ -110,7 +110,7 @@ def clean_example_models():
 @pytest.fixture
 def isolated_registry():
     """Provide a clean seeder registry for tests."""
-    from seeders.registries import seeder_registry
+    from seeds.registries import seeder_registry
 
     # Store original registry
     original_registry = seeder_registry.registry.copy()

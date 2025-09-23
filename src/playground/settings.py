@@ -4,7 +4,7 @@ DEBUG = True
 SECRET_KEY = "fake-key"
 INSTALLED_APPS = [
     "playground",
-    "seeders",
+    "seeds",
     "django.contrib.contenttypes",
     "django.contrib.auth",
     "django.contrib.admin",

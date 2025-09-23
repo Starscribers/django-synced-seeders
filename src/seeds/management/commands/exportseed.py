@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import json
-from typing import Self
 
 from django.core.management.base import BaseCommand, CommandParser
-from seeders.registries import seeder_registry
-from seeders.utils import get_seed_meta_path
+from typing_extensions import Self
+
+from seeds.registries import seeder_registry
+from seeds.utils import get_seed_meta_path
 
 
 class Command(BaseCommand):
@@ -19,7 +20,7 @@ class Command(BaseCommand):
             type=str,
             help="Force sync all seeds.",
         )
-        return super().add_arguments(parser)
+        super().add_arguments(parser)
 
     def handle(self: Self, seed_slug: str, *args: tuple, **kwargs: dict) -> None:
         seed_manager = seeder_registry.registry[seed_slug]

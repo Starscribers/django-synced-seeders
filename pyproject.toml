@@ -15,6 +15,7 @@ dependencies = [
     "types-requests>=2.32.0.20241016",
     "slack-sdk>=3.36.0",
     "any-registries>=0.2.0",
+    "django-stub>=0.1",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -89,21 +90,9 @@ include = '\.pyi?$'
 [tool.isort]
 profile = "black"
 line_length = 88
-known_first_party = "seeders"
+known_first_party = "seeds"
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 
-[tool.mypy]
-python_version = "3.10"
-check_untyped_defs = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-disallow_untyped_decorators = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_return_any = true
-strict_equality = true
-disable_error_code = "misc"
 
 [tool.bandit]
 skips = ["B101", "B601"]

@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "seeders",
+    "seeds",
     "playground",  # Test app
 ]
 
@@ -88,7 +88,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "seeders": {
+        "seeds": {
             "handlers": ["console"],
             "level": "DEBUG",
         },

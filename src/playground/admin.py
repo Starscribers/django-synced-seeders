@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import ExamplePresetModel
+from playground.models import ExamplePresetModel
 
 
 @admin.register(ExamplePresetModel)

@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import json
-from typing import Self
 
 from django.core.management.base import BaseCommand
-from seeders.models import SeedRevision
-from seeders.registries import seeder_registry
-from seeders.utils import get_seed_meta_path
+from typing_extensions import Self
+
+from seeds.models import SeedRevision
+from seeds.registries import seeder_registry
+from seeds.utils import get_seed_meta_path
 
 
 class Command(BaseCommand):

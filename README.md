@@ -10,13 +10,13 @@ An easy-to-use seeder manager to keep seed data in sync across multiple environm
 
 ## Features
 
-✨ **Version Control for Seeds** - Track and manage seed versions with automatic revision tracking  
-🔄 **Environment Sync** - Keep data consistent across development, staging, and production  
-📦 **Export & Import** - Easy data export from any environment and import to others  
-🎯 **Selective Loading** - Load only the seeds you need with intelligent version checking  
-🏗️ **Django Integration** - Built specifically for Django with full ORM support  
-🧪 **Test-Friendly** - Comprehensive test suite with function-based tests  
-🔧 **Extensible** - Easy to extend with custom seeders for your specific needs  
+✨ **Version Control for Seeds** - Track and manage seed versions with automatic revision tracking
+🔄 **Environment Sync** - Keep data consistent across development, staging, and production
+📦 **Export & Import** - Easy data export from any environment and import to others
+🎯 **Selective Loading** - Load only the seeds you need with intelligent version checking
+🏗️ **Django Integration** - Built specifically for Django with full ORM support
+🧪 **Test-Friendly** - Comprehensive test suite with function-based tests
+🔧 **Extensible** - Easy to extend with custom seeders for your specific needs
 
 ## Quick Start
 
@@ -49,24 +49,24 @@ python manage.py migrate
 
 ```python
 # myapp/seeders.py
-from seeders.registries import seeder_registry
-from seeders.seeders import Seeder
+from seeds.registries import seeder_registry
+from seeds.seeders import Seeder
 from .models import Category, Tag
 
 @seeder_registry.register()
 class CategorySeeder(Seeder):
     """Seeder for category reference data."""
-    
+
     seed_slug = "categories"
     exporting_querysets = (Category.objects.all(),)
-    
+
     # Optional: whether to delete existing data before loading
     delete_existing = True
 
-@seeder_registry.register()  
+@seeder_registry.register()
 class TagSeeder(Seeder):
     """Seeder for tag data."""
-    
+
     seed_slug = "tags"
     exporting_querysets = (Tag.objects.all(),)
 ```
@@ -93,11 +93,11 @@ python manage.py syncseeds
 A **Seeder** is a Python class that defines how to export and import specific data. Each seeder:
 
 - Has a unique `seed_slug` identifier
-- Defines which data to export via `exporting_querysets`  
+- Defines which data to export via `exporting_querysets`
 - Manages the seed file path and format
 - Controls whether to delete existing data before importing
 
-### Version Management  
+### Version Management
 
 Seeds are automatically versioned using a metadata file (`seeds_meta.json`). Each time you export:
 
@@ -137,22 +137,22 @@ python manage.py syncseeds
 ### Custom Seeder with Filtering
 
 ```python
-from seeders.registries import seeder_registry
-from seeders.seeders import Seeder
+from seeds.registries import seeder_registry
+from seeds.seeders import Seeder
 from myapp.models import User, UserProfile
 
 @seeder_registry.register()
 class AdminUserSeeder(Seeder):
     """Seeder for admin users only."""
-    
+
     seed_slug = "admin_users"
-    
+
     # Custom queryset filtering
     exporting_querysets = (
         User.objects.filter(is_superuser=True),
         UserProfile.objects.filter(user__is_superuser=True),
     )
-    
+
     # Don't delete existing admins
     delete_existing = False
 ```
@@ -161,22 +161,22 @@ class AdminUserSeeder(Seeder):
 
 ```python
 from django.conf import settings
-from seeders.registries import seeder_registry
-from seeders.seeders import Seeder
+from seeds.registries import seeder_registry
+from seeds.seeders import Seeder
 
 @seeder_registry.register()
 class ConfigSeeder(Seeder):
     """Environment-specific configuration seeder."""
-    
+
     seed_slug = "app_config"
-    
+
     def __init__(self):
         super().__init__()
-        
+
         # Different seed file per environment
         env = getattr(settings, 'ENVIRONMENT', 'dev')
         self.seed_path = f"seeds/config_{env}.json"
-    
+
     @property
     def exporting_querysets(self):
         from myapp.models import AppConfig
@@ -189,29 +189,29 @@ class ConfigSeeder(Seeder):
 @seeder_registry.register()
 class BlogSeeder(Seeder):
     """Seeder for blog content with relationships."""
-    
+
     seed_slug = "blog_content"
-    
+
     exporting_querysets = (
         # Export in dependency order
         Category.objects.all(),
-        Tag.objects.all(), 
+        Tag.objects.all(),
         Author.objects.all(),
         Post.objects.all(),
         PostTag.objects.all(),  # Many-to-many through table
     )
-    
+
     def get_export_objects(self):
         """Custom export logic with proper ordering."""
         from itertools import chain
-        
+
         # Ensure categories and tags are first
         categories = Category.objects.all()
         tags = Tag.objects.all()
         authors = Author.objects.filter(posts__isnull=False).distinct()
         posts = Post.objects.select_related('category', 'author')
         post_tags = PostTag.objects.select_related('post', 'tag')
-        
+
         return chain(categories, tags, authors, posts, post_tags)
 ```
 
@@ -235,7 +235,7 @@ python manage.py exportseed user_permissions
 3. Saves data to JSON file
 4. Increments version number in metadata file
 
-### syncseeds  
+### syncseeds
 
 Import all available seeds that need updating:
 
@@ -245,7 +245,7 @@ python manage.py syncseeds
 
 **What it does:**
 1. Discovers all registered seeders
-2. Compares local vs. available versions  
+2. Compares local vs. available versions
 3. Imports only newer versions
 4. Skips already up-to-date seeds
 5. Creates revision records for tracking
@@ -300,11 +300,11 @@ your_project/
         }
     },
     {
-        "model": "myapp.category", 
+        "model": "myapp.category",
         "pk": 2,
         "fields": {
             "name": "Business",
-            "slug": "business", 
+            "slug": "business",
             "description": "Business and finance content"
         }
     }
@@ -333,7 +333,7 @@ class CustomSeeder(Seeder):
 ```python
 class ConditionalSeeder(Seeder):
     seed_slug = "conditional_data"
-    
+
     def load_seed(self):
         """Override to add custom logic."""
         if settings.DEBUG:
@@ -341,7 +341,7 @@ class ConditionalSeeder(Seeder):
             super().load_seed()
         else:
             self.stdout.write("Skipping conditional seed in production")
-    
+
     @property
     def exporting_querysets(self):
         # Dynamic querysets based on environment
@@ -395,25 +395,25 @@ def test_category_seeder_export():
     """Test exporting category data."""
     # Create test data
     Category.objects.create(name="Test Category", slug="test")
-    
+
     seeder = CategorySeeder()
     seeder.seed_path = "/tmp/test_categories.json"
-    
+
     # Test export
     seeder.export()
-    
+
     # Verify file was created
     assert Path(seeder.seed_path).exists()
 
-@pytest.mark.django_db  
+@pytest.mark.django_db
 def test_category_seeder_load():
     """Test loading category data."""
     seeder = CategorySeeder()
     seeder.seed_path = "fixtures/test_categories.json"
-    
+
     # Load seed data
     seeder.load_seed()
-    
+
     # Verify data was imported
     assert Category.objects.filter(name="Test Category").exists()
 ```
@@ -427,7 +427,7 @@ def test_category_seeder_load():
 class UserRoleSeeder(Seeder): ...
 class PermissionSeeder(Seeder): ...
 
-# content/seeders.py - Content-related seeds  
+# content/seeders.py - Content-related seeds
 class CategorySeeder(Seeder): ...
 class TagSeeder(Seeder): ...
 ```
@@ -437,7 +437,7 @@ class TagSeeder(Seeder): ...
 ```python
 # Good
 seed_slug = "user_permissions"
-seed_slug = "blog_categories" 
+seed_slug = "blog_categories"
 seed_slug = "payment_providers"
 
 # Avoid
@@ -453,7 +453,7 @@ class BlogSeeder(Seeder):
     # Export dependencies first
     exporting_querysets = (
         Author.objects.all(),      # No dependencies
-        Category.objects.all(),    # No dependencies  
+        Category.objects.all(),    # No dependencies
         Post.objects.all(),        # Depends on Author, Category
         Comment.objects.all(),     # Depends on Post
     )
@@ -464,7 +464,7 @@ class BlogSeeder(Seeder):
 ```python
 class UserSeeder(Seeder):
     """Seeder that excludes sensitive data."""
-    
+
     @property
     def exporting_querysets(self):
         # Exclude sensitive fields or users
@@ -480,7 +480,7 @@ class UserSeeder(Seeder):
 # settings/development.py
 SEEDS_META_PATH = BASE_DIR / "seeds" / "dev_meta.json"
 
-# settings/production.py  
+# settings/production.py
 SEEDS_META_PATH = BASE_DIR / "seeds" / "prod_meta.json"
 ```
 
@@ -538,7 +538,7 @@ class MySeeder(Seeder):
     exporting_querysets = (
         MyModel.objects.all(),  # Make sure this returns data
     )
-    
+
     # Debug what's being exported
     def get_export_objects(self):
         objects = super().get_export_objects()
@@ -584,13 +584,13 @@ LOGGING = {
 ```python
 class Seeder:
     """Base seeder class."""
-    
+
     # Configuration attributes
     seed_slug: str = "base-seed"
     seed_path: str | None = None
     delete_existing: bool = True
     exporting_querysets: tuple = ()
-    
+
     # Methods
     def __init__(self) -> None: ...
     def load_seed(self) -> None: ...
@@ -601,7 +601,7 @@ class Seeder:
 ### Registry Functions
 
 ```python
-from seeders.registries import seeder_registry
+from seeds.registries import seeder_registry
 
 # Register a seeder
 @seeder_registry.register()
@@ -615,7 +615,7 @@ my_seeder_class = seeder_registry.registry["my_slug"]
 ### Utility Functions
 
 ```python
-from seeders.utils import get_seed_meta_path
+from seeds.utils import get_seed_meta_path
 
 # Get metadata file path
 meta_path = get_seed_meta_path()
@@ -661,7 +661,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ### 0.2.0
 - Function-based test suite
-- Improved Django 4.2+ support  
+- Improved Django 4.2+ support
 - Enhanced error handling
 - Better documentation
 

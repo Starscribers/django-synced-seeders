@@ -41,7 +41,7 @@ Run specific test categories:
 python run_tests.py quick
 
 # Integration tests
-python run_tests.py integration  
+python run_tests.py integration
 
 # With coverage reporting
 python run_tests.py coverage
@@ -84,7 +84,7 @@ pytest --pdb -s
 - **Utilities**: Test utility functions like `get_seed_meta_path`
 - **Commands**: Test management commands with mocking
 
-### Integration Tests  
+### Integration Tests
 - **Complete Workflows**: End-to-end testing of export → sync cycles
 - **Version Management**: Testing incremental updates and revision tracking
 - **Multiple Seeders**: Testing coordination between multiple seeders
@@ -95,7 +95,7 @@ pytest --pdb -s
 
 ### Fixtures
 - `temp_seed_file` - Temporary JSON seed files
-- `temp_meta_file` - Temporary metadata files  
+- `temp_meta_file` - Temporary metadata files
 - `sample_seed_data` - Predefined test data
 - `clean_seed_revisions` - Auto-cleanup of test revisions
 - `isolated_registry` - Clean seeder registry for tests
@@ -117,7 +117,7 @@ pytest --pdb -s
 ### pytest.ini
 - Django settings: `tests.settings`
 - Test discovery patterns
-- Coverage configuration  
+- Coverage configuration
 - Custom markers for test organization
 - Database optimizations (`--reuse-db`, `--nomigrations`)
 
@@ -141,7 +141,7 @@ import pytest
 @pytest.mark.django_db
 def test_specific_behavior():
     # Arrange
-    # Act  
+    # Act
     # Assert
     pass
 
@@ -157,7 +157,7 @@ def test_with_fixtures(temp_seed_file, sample_seed_data, clean_example_models):
     # Use temporary file
     with temp_seed_file.open('w') as f:
         json.dump(sample_seed_data, f)
-    
+
     # Test automatically cleans up ExamplePresetModel instances
 ```
 
@@ -182,7 +182,7 @@ pytest --lf
 # Stop on first failure
 pytest -x
 
-# Drop into debugger on failure  
+# Drop into debugger on failure
 pytest --pdb
 
 # Verbose output with full tracebacks
@@ -201,7 +201,7 @@ pytest -s
 ## Performance
 
 - **Fast unit tests**: < 1 second per test
-- **Integration tests**: 2-10 seconds per test  
+- **Integration tests**: 2-10 seconds per test
 - **Full suite**: < 30 seconds
 - **Database**: In-memory SQLite for speed
 - **Parallel execution**: Can be enabled with `pytest-xdist`
@@ -216,7 +216,7 @@ The test suite is designed to run in CI environments:
   run: |
     pip install -r requirements-test.txt
     python run_tests.py coverage
-    
+
 - name: Upload coverage
   uses: codecov/codecov-action@v1
 ```

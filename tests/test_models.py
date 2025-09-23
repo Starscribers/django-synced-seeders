@@ -6,7 +6,7 @@ import pytest
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
-from seeders.models import SeedRevision
+from seeds.models import SeedRevision
 
 
 @pytest.mark.django_db
@@ -135,7 +135,7 @@ def test_model_meta_attributes():
     assert meta.verbose_name_plural == "seed Revisions"
 
 
-def test_model_indexes():
+def test_model_indexes() -> None:
     """Test that proper indexes are defined."""
     meta = SeedRevision._meta
 
@@ -177,7 +177,7 @@ def test_queryset_operations():
 
 
 @pytest.mark.django_db
-def test_get_latest_revision_for_seed():
+def test_get_latest_revision_for_seed() -> None:
     """Test getting the latest revision for a specific seed."""
     seed_slug = "version-test"
 
@@ -195,7 +195,7 @@ def test_get_latest_revision_for_seed():
 
 
 @pytest.mark.django_db
-def test_bulk_operations():
+def test_bulk_operations() -> None:
     """Test bulk operations on SeedRevision objects."""
     # Create sample revisions
     SeedRevision.objects.create(seed_slug="sample-1", revision=1)

@@ -1,6 +1,5 @@
-from typing import Self
-
 from django.db import models
+from typing_extensions import Self
 
 
 class SeedRevision(models.Model):

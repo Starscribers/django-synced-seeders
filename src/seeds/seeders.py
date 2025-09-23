@@ -3,11 +3,13 @@ from __future__ import annotations
 import json
 from itertools import chain
 from pathlib import Path
-from typing import TYPE_CHECKING, Self
+from typing import TYPE_CHECKING
 
 from django.core import serializers
 from django.core.management import call_command
-from seeders.utils import get_seed_meta_path
+from typing_extensions import Self
+
+from seeds.utils import get_seed_meta_path
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
