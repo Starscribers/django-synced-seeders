@@ -10,11 +10,11 @@ from pathlib import Path
 import pytest
 from django.core.management import call_command
 from django.test import override_settings
+
+from playground.models import ExamplePresetModel
 from seeders.models import SeedRevision
 from seeders.registries import seeder_registry
 from seeders.seeders import Seeder
-
-from playground.models import ExamplePresetModel
 
 
 class TestSeederForIntegration(Seeder):

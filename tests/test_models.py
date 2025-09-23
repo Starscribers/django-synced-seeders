@@ -5,6 +5,7 @@ Tests for seeders models.
 import pytest
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+
 from seeders.models import SeedRevision
 
 
