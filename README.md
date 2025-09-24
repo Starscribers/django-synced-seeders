@@ -652,27 +652,5 @@ isort src/ tests/
 # Type checking
 mypy src/
 ```
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Changelog
-
-### 0.2.0
-- Function-based test suite
-- Improved Django 4.2+ support
-- Enhanced error handling
-- Better documentation
-
-### 0.1.0
-- Initial release
-- Basic seeder functionality
-- Management commands
-- Version tracking
-
----
-
-**Made with ❤️ by [Starscribers](https://github.com/Starscribers)**
-
-*Django Synced Seeds - Keep your data in sync across all environments!*
+**Happy coding!** 🎉
+Join our discord open source community: https://discord.gg/ngE8JxjDx7
