@@ -1,0 +1,474 @@
+/* Clean, readable styling for Django Synced Seeds documentation */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Clean, readable color palette */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #6b7280;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --accent-blue: #3b82f6;
+  --accent-blue-light: #dbeafe;
+  --accent-green: #10b981;
+  --accent-orange: #f97316;
+  
+  /* Readable typography */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  
+  /* Comfortable spacing */
+  --space-1: 0.25rem;     /* 4px */
+  --space-2: 0.5rem;      /* 8px */
+  --space-3: 0.75rem;     /* 12px */
+  --space-4: 1rem;        /* 16px */
+  --space-5: 1.25rem;     /* 20px */
+  --space-6: 1.5rem;      /* 24px */
+  --space-8: 2rem;        /* 32px */
+  --space-10: 2.5rem;     /* 40px */
+  --space-12: 3rem;       /* 48px */
+  
+  /* Subtle shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  font-weight: 400;
+}
+
+/* Clean header */
+.md-header {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  height: 4rem;
+}
+
+.md-header__title {
+  font-weight: 600;
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+}
+
+/* Readable hero section */
+.md-typeset h1:first-child {
+  font-weight: 700;
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
+  color: var(--text-primary);
+  text-align: center;
+  margin: var(--space-12) 0 var(--space-8) 0;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+/* Badge styling */
+.md-typeset p img[src*="badge"] {
+  margin: var(--space-1);
+  vertical-align: middle;
+  height: 20px;
+  border-radius: 4px;
+}
+
+/* Clean feature cards */
+.md-typeset p:has(> strong:contains("Version Control")),
+.md-typeset p:has(> strong:contains("Environment Sync")),
+.md-typeset p:has(> strong:contains("Export & Import")),
+.md-typeset p:has(> strong:contains("Selective Loading")),
+.md-typeset p:has(> strong:contains("Django Integration")),
+.md-typeset p:has(> strong:contains("Test-Friendly")),
+.md-typeset p:has(> strong:contains("Extensible")) {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: var(--space-6);
+  margin: var(--space-4) 0;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--accent-blue);
+}
+
+.md-typeset p:has(> strong):hover {
+  background: var(--accent-blue-light);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.md-typeset p:has(> strong) strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Code blocks */
+.md-typeset .highlight {
+  background: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  margin: var(--space-6) 0;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.md-typeset .highlight pre {
+  margin: 0;
+  padding: var(--space-6);
+  background: transparent;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.md-typeset .highlight code {
+  background: transparent;
+  color: var(--bg-primary);
+  border-radius: 0;
+}
+
+/* Tab styling */
+.md-typeset .tabbed-set {
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: var(--space-6) 0;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.md-typeset .tabbed-labels {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  gap: 0;
+}
+
+.md-typeset .tabbed-labels > label {
+  font-weight: 500;
+  font-size: var(--text-sm);
+  padding: var(--space-3) var(--space-6);
+  color: var(--text-secondary);
+  border-radius: 0;
+  transition: all 0.2s ease;
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.md-typeset .tabbed-labels > label:hover {
+  color: var(--accent-blue);
+  background: var(--accent-blue-light);
+}
+
+.md-typeset .tabbed-set input:checked + label {
+  color: var(--accent-blue);
+  background: var(--bg-primary);
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent-blue);
+}
+
+/* Admonitions */
+.md-typeset .admonition {
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  margin: var(--space-6) 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-primary);
+}
+
+.md-typeset .admonition.note {
+  border-left: 4px solid var(--accent-blue);
+}
+
+.md-typeset .admonition.tip {
+  border-left: 4px solid var(--accent-green);
+}
+
+.md-typeset .admonition.warning {
+  border-left: 4px solid var(--accent-orange);
+}
+
+.md-typeset .admonition-title {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  padding: var(--space-4) var(--space-6);
+  background: var(--bg-secondary);
+  margin: 0;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* Navigation */
+.md-nav__title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-4) var(--space-6) var(--space-2);
+}
+
+.md-nav__item .md-nav__link {
+  font-weight: 400;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  margin: 0 var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  transition: all 0.2s ease;
+  font-size: var(--text-sm);
+}
+
+.md-nav__item .md-nav__link:hover {
+  background: var(--bg-tertiary);
+  color: var(--accent-blue);
+}
+
+.md-nav__item .md-nav__link--active {
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+  font-weight: 600;
+  border-left: 3px solid var(--accent-blue);
+}
+
+/* Buttons */
+.md-typeset .md-button {
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: var(--text-sm);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.md-typeset .md-button:hover {
+  background: var(--accent-blue);
+  color: var(--bg-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.md-typeset .md-button--primary {
+  background: var(--accent-blue);
+  color: var(--bg-primary);
+  border-color: var(--accent-blue);
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: var(--space-6) 0;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border-light);
+  text-align: left;
+}
+
+.md-typeset table:not([class]) td {
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+  background: var(--bg-secondary);
+}
+
+/* Footer */
+.md-footer {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-light);
+}
+
+.md-footer__link {
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.md-footer__link:hover {
+  color: var(--accent-blue);
+}
+
+/* Search */
+.md-search__form {
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+}
+
+.md-search__input {
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+/* Headings */
+.md-typeset h1 {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.md-typeset h2 {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-2xl);
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: var(--space-2);
+}
+
+.md-typeset h3 {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-top: var(--space-8);
+  font-size: var(--text-xl);
+}
+
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-top: var(--space-6);
+}
+
+/* Inline code */
+.md-typeset code {
+  background: var(--bg-tertiary);
+  color: var(--accent-blue);
+  font-family: 'JetBrains Mono', monospace;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  border: 1px solid var(--border-light);
+}
+
+/* Copy button */
+.md-clipboard {
+  border-radius: 4px;
+  background: var(--text-tertiary);
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.md-clipboard:hover {
+  background: var(--accent-blue);
+  transform: scale(1.1);
+}
+
+/* Content spacing */
+.md-typeset p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+}
+
+.md-typeset a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.md-typeset a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Lists */
+.md-typeset ul,
+.md-typeset ol {
+  color: var(--text-secondary);
+}
+
+.md-typeset ul li::marker {
+  color: var(--accent-blue);
+}
+
+.md-typeset ol li::marker {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media screen and (max-width: 76.1875em) {
+  .md-typeset h1:first-child {
+    font-size: var(--text-2xl);
+    margin: var(--space-8) 0 var(--space-6) 0;
+  }
+  
+  .md-header {
+    height: 3.5rem;
+  }
+}
+
+/* Content container */
+.md-content__inner {
+  padding-top: var(--space-6);
+}
+
+/* Sidebar */
+.md-sidebar {
+  background: var(--bg-primary);
+}
+
+.md-sidebar--secondary {
+  border-left: 1px solid var(--border-light);
+}
+
+/* TOC */
+.md-nav--secondary .md-nav__title {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: var(--space-4);
+  font-size: var(--text-sm);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* Focus states */
+*:focus {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .md-header, .md-tabs, .md-footer, .md-sidebar {
+    display: none !important;
+  }
+  .md-content {
+    margin: 0 !important;
+  }
+}

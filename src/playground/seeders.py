@@ -1,5 +1,4 @@
-from seeds.registries import seeder_registry
-from seeds.seeders import Seeder
+from seeds import Seeder, seeder_registry
 
 from .models import ExamplePresetModel
 

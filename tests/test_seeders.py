@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 from playground.models import ExamplePresetModel
-from seeds.seeders import Seeder
+from seeds import Seeder
 
 
 @pytest.mark.django_db

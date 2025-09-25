@@ -5,8 +5,8 @@ import json
 from django.core.management.base import BaseCommand
 from typing_extensions import Self
 
+from seeds import seeder_registry
 from seeds.models import SeedRevision
-from seeds.registries import seeder_registry
 from seeds.utils import get_seed_meta_path
 
 

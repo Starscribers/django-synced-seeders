@@ -4,8 +4,7 @@ that all `<app>/seeds.py` files are imported by seeder_registry and all seeders 
 """
 
 from playground.models import ExamplePresetModel
-from seeds.registries import seeder_registry
-from seeds.seeders import Seeder
+from seeds import Seeder, seeder_registry
 
 
 # Register seeders

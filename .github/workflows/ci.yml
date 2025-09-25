@@ -2,49 +2,43 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-        exclude:
-          - python-version: "3.8"
-          - python-version: "3.7"
-          - python-version: "3.7"
-          - python-version: "3.7"
-          - python-version: "3.7"
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v3
-      with:
-        version: "latest"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
 
-    - name: Install dependencies
-      run: |
-        uv sync --dev
+      - name: Install dependencies
+        run: |
+          uv sync --dev
 
-    - name: Lint with ruff
-      run: |
-        uv run ruff check src/ tests/
-        uv run ruff format --check src/ tests/
+      - name: Lint with ruff
+        run: |
+          uv run ruff check src/ tests/
+          uv run ruff format --check src/ tests/
 
-    - name: Type check with mypy
-      run: |
-        uv run mypy src/
+      - name: Type check with mypy
+        run: |
+          uv run mypy src/
 
-    - name: Run tests
-      run: |
-        uv run pytest
+      - name: Run tests
+        run: |
+          uv run pytest
