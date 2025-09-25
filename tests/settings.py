@@ -5,8 +5,8 @@ Django settings for tests.
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent / "src"
-
+BASE_DIR = Path(__file__).resolve().parent
+print(BASE_DIR)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-test-key-for-tests-only"
 
