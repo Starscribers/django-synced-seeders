@@ -17,12 +17,8 @@ Django Synced Seeds Documentation
    :target: https://opensource.org/licenses/MIT
    :alt: License: MIT
 
-.. image:: https://readthedocs.org/projects/django-synced-seeders/badge/?version=latest
-   :target: https://django-synced-seeders.readthedocs.io/en/latest/?badge=latest
-   :alt: Documentation
-
-.. image:: https://github.com/Starscribers/python-packages/actions/workflows/test.yml/badge.svg
-   :target: https://github.com/Starscribers/python-packages/actions
+.. image:: https://github.com/Starscribers/django-synced-seeders/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/Starscribers/django-synced-seeders/actions
    :alt: Tests
 
 An easy-to-use seeder manager to keep seed data in sync across multiple environments. Perfect for managing reference data, initial configurations, and test data across development, staging, and production environments.
@@ -132,7 +128,7 @@ Table of Contents
 Community
 ---------
 
-* **GitHub**: `Source code and issues <https://github.com/Starscribers/python-packages>`_
+* **GitHub**: `Source code and issues <https://github.com/Starscribers/django-synced-seeders>`_
 * **PyPI**: `Package releases <https://pypi.org/project/django-synced-seeders/>`_
 * **Discord**: `Community chat <https://discord.gg/ngE8JxjDx7>`_
 
