@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "Starscribers", email = "Starscribers@gmail.com" }
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
     "django>=4.2.24",
     "django-stubs[compatible-mypy]>=5.1.3",
@@ -24,7 +24,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -50,12 +49,17 @@ testing = [
     "pytest>=7.0.0",
     "pytest-cov>=3.0.0",
 ]
-
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-conestack-theme>=1.0.0",
+    "sphinx-autodoc-typehints>=1.25.0",
+    "myst-parser>=2.0.0",
+]
 [project.urls]
-Homepage = "https://github.com/Starscribers/python-packages"
-Repository = "https://github.com/Starscribers/python-packages.git"
-Issues = "https://github.com/Starscribers/python-packages/issues"
-Documentation = "https://github.com/Starscribers/python-packages/blob/main/django-synced-seeders/README.md"
+Homepage = "https://github.com/Starscribers/django-synced-seeders"
+Repository = "https://github.com/Starscribers/django-synced-seeders.git"
+Issues = "https://github.com/Starscribers/django-synced-seeders/issues"
+Documentation = "https://django-synced-seeders.readthedocs.io/"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
@@ -129,4 +133,10 @@ dev = [
     "pytest-django>=4.11.1",
     "ruff>=0.13.1",
     "types-requests>=2.32.0.20241016",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-conestack-theme>=1.0.0",
+    "sphinx-autodoc-typehints>=1.25.0",
+    "myst-parser>=2.0.0",
 ]

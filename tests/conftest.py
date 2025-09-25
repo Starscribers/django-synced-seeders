@@ -73,7 +73,7 @@ def enable_db_access_for_all_tests(db):
     Give all tests access to the database.
 
     This fixture is autouse=True, which means it's automatically used
-    for all tests. This is useful for django-synced-seeds since most
+    for all tests. This is useful for django-synced-seeders since most
     functionality involves database operations.
     """
     pass
@@ -110,7 +110,7 @@ def clean_example_models():
 @pytest.fixture
 def isolated_registry():
     """Provide a clean seeder registry for tests."""
-    from seeds.registries import seeder_registry
+    from seeds import seeder_registry
 
     # Store original registry
     original_registry = seeder_registry.registry.copy()
