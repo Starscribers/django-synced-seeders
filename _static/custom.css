@@ -1,0 +1,298 @@
+/* Custom CSS for Django Synced Seeds documentation */
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #2d5a27;
+    text-decoration: none;
+}
+
+.logo:hover {
+    text-decoration: none;
+    color: #1a3318;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--primary-color);
+    stroke: var(--primary-color);
+    stroke-width: 2;
+}
+
+/* Code block with line numbers */
+.highlight {
+    position: relative;
+}
+
+.highlight pre {
+    counter-reset: line;
+    padding-left: 3em;
+}
+
+.highlight pre code {
+    counter-increment: line;
+}
+
+.highlight pre code:before {
+    content: counter(line);
+    position: absolute;
+    left: 0.5em;
+    width: 2em;
+    text-align: right;
+    color: #6b7280;
+    border-right: 1px solid var(--border-color);
+    padding-right: 0.5em;
+    margin-right: 0.5em;
+    font-size: 0.9em;
+}
+
+/* Header customization */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Sidebar logo customization */
+.sidebar .logo {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 1rem;
+}
+
+/* Custom header styling - don't hide theme header completely */
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+    background: linear-gradient(135deg, var(--bg-light) 0%, #f0fdfa 100%);
+    margin-bottom: 1rem;
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Ensure logo displays properly */
+.site-title .logo-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+/* Customize theme branding instead of hiding it */
+.navbar-brand .brand-text {
+    display: none;
+}
+
+.site-subtitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Custom color scheme with cyan accents */
+:root {
+    --primary-color: #22d3ee;
+    --primary-dark: #0891b2;
+    --primary-light: #67e8f9;
+    --text-color: #1f2937;
+    --border-color: #e5e7eb;
+    --bg-light: #f0fdfa;
+}
+
+/* Link colors */
+a {
+    color: var(--primary-dark);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* Code block with line numbers using CSS counters */
+.highlight {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-left: 4px solid var(--primary-color);
+    position: relative;
+    counter-reset: line-numbering;
+}
+
+.highlight pre {
+    padding-left: 3em;
+    margin: 0;
+    overflow: auto;
+}
+
+.highlight pre code {
+    display: block;
+    line-height: 1.5;
+}
+
+/* Add line numbers using CSS */
+.highlight pre code::before {
+    counter-increment: line-numbering;
+    content: counter(line-numbering);
+    position: absolute;
+    left: 0;
+    width: 2.5em;
+    text-align: right;
+    color: #6b7280;
+    border-right: 1px solid var(--border-color);
+    padding-right: 0.5em;
+    font-size: 0.9em;
+    line-height: inherit;
+}
+
+/* Alternative approach - for each line in code blocks */
+.highlight .linenos {
+    background-color: transparent;
+    border-right: 1px solid var(--primary-color);
+    color: #6b7280;
+    padding-right: 0.5em;
+    text-align: right;
+    user-select: none;
+    font-size: 0.9em;
+}
+
+/* Style for badges */
+.badges img {
+    margin-right: 5px;
+}
+
+/* Better spacing for feature list */
+.feature-list {
+    margin: 1rem 0;
+}
+
+.feature-list p {
+    margin-bottom: 0.5rem;
+}
+
+/* Improve table styling */
+table.docutils {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.docutils td,
+table.docutils th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table.docutils th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Style for note/warning blocks */
+.admonition {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 4px solid #17a2b8;
+    background-color: #f8f9fa;
+}
+
+.admonition.warning {
+    border-color: #ffc107;
+    background-color: #fff3cd;
+}
+
+.admonition.note {
+    border-color: #17a2b8;
+    background-color: #d1ecf1;
+}
+
+/* Navigation active states */
+.current > a {
+    color: var(--primary-dark) !important;
+    font-weight: 600;
+}
+
+/* Ensure sidebar navigation is visible */
+.sidebar {
+    display: block !important;
+}
+
+.sidebar .toctree-l1 > a {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.sidebar .toctree-l1.current > a {
+    color: var(--primary-dark);
+    background-color: var(--bg-light);
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1rem;
+}
+
+/* On this page navigation */
+.sidebar .toctree-l2 {
+    margin-left: 1rem;
+}
+
+.sidebar .toctree-l2 > a {
+    font-size: 0.9em;
+    color: #6b7280;
+}
+
+.sidebar .toctree-l2.current > a {
+    color: var(--primary-color);
+}
+
+/* Make sure the page outline/toc is visible */
+.page-nav, .toc, .contents {
+    display: block !important;
+}
+
+/* Improve navigation */
+.wy-nav-content {
+    max-width: none;
+}
+
+.wy-nav-content-wrap {
+    margin-left: 300px;
+}
+
+/* Better mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .wy-nav-content-wrap {
+        margin-left: 0;
+    }
+}
+
+.highlighttable {
+    margin-bottom: 0 !important;
+}
+.code {
+
+    padding-left: 0.5em !important;
+}
+.code span {
+    line-height: 1.5 !important;
+}
+.linenos span {
+    line-height: 1.5 !important;
+}
+h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.25em;
+}

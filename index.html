@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Django Synced Seeds Documentation &#8212; Django Synced Seeds</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=c101cb8c" />
+    <script src="_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="getting-started/installation.html" />
+<link rel="stylesheet" type="text/css" src="_static/bootstrap.css" />
+<script src="_static/bootstrap.bundle.min.js"></script>
+<script src="_static/conestack.js"></script>
+
+  </head><body>
+
+  <noscript>
+    <style type="text/css">
+      #searchbox,
+      #searchdesc {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        #navbar-toggle {
+          display: none;
+        }
+        #cs-mobile-menu {
+          display: block;
+        }
+        #cs-layout {
+          margin-top: 12rem;
+        }
+        #cs-ext-links {
+          margin-right: 2rem!important;
+        }
+      }
+    </style>
+  </noscript>
+
+  
+  <header class="navbar navbar-expand-md" id="header">
+    <nav class="container-xxl flex-wrap flex-md-nowrap p-0" id="cs-nav">
+  <a id="logo" class="navbar-brand p-0 me-2" href="#">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN5YW4iIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zcHJvdXQtaWNvbiBsdWNpZGUtc3Byb3V0Ij48cGF0aCBkPSJNMTQgOS41MzZWN2E0IDQgMCAwIDEgNC00aDEuNWEuNS41IDAgMCAxIC41LjVWNWE0IDQgMCAwIDEtNCA0IDQgNCAwIDAgMC00IDRjMCAyIDEgMyAxIDVhNSA1IDAgMCAxLTEgMyIvPjxwYXRoIGQ9Ik00IDlhNSA1IDAgMCAxIDggNCA1IDUgMCAwIDEtOC00Ii8+PHBhdGggZD0iTTUgMjFoMTQiLz48L3N2Zz4="
+         alt="Logo"
+         width="40px"
+         height="40px" />
+    <span>Django Synced Seeds</span>
+  </a>
+
+      
+  <div id="nav-search" class="ms-auto">
+    <div id="searchbox" class="nav-item me-3" role="search">
+      <form class="search input-group" action="search.html" method="get">
+        <input type="text" class="form-control" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <button type="submit" 
+                class="bi bi-search input-group-text"
+                btn-title="Search documentation"></button>
+      </form>
+    </div>
+  </div>
+      
+
+      <button id="navbar-toggle" class="navbar-toggler p-0 me-4" type="button" data-bs-toggle="collapse" data-bs-target="#cs-mobile-menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path></svg>
+      </button>
+
+      <div class="collapse container-fluid m-0 p-3" id="cs-mobile-menu"><nav class="cs-mobile-toc">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/best-practices.html">Best Practices</a></li>
+</ul>
+
+</nav>
+      </div>
+    </nav>
+  </header>
+  
+
+  <div class="container-xxl my-md-4" id="cs-layout">
+    
+  <aside id="cs-sidebar" class="ms-4 sphinxsidebar"><nav class="cs-nav-toc">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#using-uv-recommended">Using uv (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#using-pip">Using pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#django-settings">Django Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#run-migrations">Run Migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#verify-installation">Verify Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#management-commands">Management Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#creating-seeders">Creating Seeders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#auto-discovery">Auto-discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#version-management">Version Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/best-practices.html">Best Practices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/best-practices.html#seeder-design">Seeder Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/best-practices.html#version-control">Version Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/best-practices.html#environment-management">Environment Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/best-practices.html#testing-strategy">Testing Strategy</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+    
+  </aside>
+    
+
+    
+      <main class="document cs-main order-1">
+    
+      <div class="ps-lg-4 mt-3 cs-content">
+        
+  <section id="django-synced-seeds-documentation">
+<h1>Django Synced Seeds Documentation<a class="headerlink" href="#django-synced-seeds-documentation" title="Link to this heading">#</a></h1>
+<a class="reference external image-reference" href="https://badge.fury.io/py/django-synced-seeders"><img alt="PyPI version" src="https://badge.fury.io/py/django-synced-seeders.svg" />
+</a>
+<a class="reference external image-reference" href="https://pypi.org/project/django-synced-seeders/"><img alt="Python Support" src="https://img.shields.io/pypi/pyversions/django-synced-seeders.svg" />
+</a>
+<a class="reference external image-reference" href="https://www.djangoproject.com/"><img alt="Django Support" src="https://img.shields.io/badge/Django-4.2%2B-brightgreen.svg" />
+</a>
+<a class="reference external image-reference" href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+</a>
+<a class="reference external image-reference" href="https://django-synced-seeders.readthedocs.io/en/latest/?badge=latest"><img alt="Documentation" src="https://readthedocs.org/projects/django-synced-seeders/badge/?version=latest" />
+</a>
+<a class="reference external image-reference" href="https://github.com/Starscribers/python-packages/actions"><img alt="Tests" src="https://github.com/Starscribers/python-packages/actions/workflows/test.yml/badge.svg" />
+</a>
+<p>An easy-to-use seeder manager to keep seed data in sync across multiple environments. Perfect for managing reference data, initial configurations, and test data across development, staging, and production environments.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h2>
+<p><strong>Version Control for Seeds</strong> - Track and manage seed versions with automatic revision tracking</p>
+<p><strong>Environment Sync</strong> - Keep data consistent across development, staging, and production</p>
+<p><strong>Export &amp; Import</strong> - Easy data export from any environment and import to others</p>
+<p><strong>Selective Loading</strong> - Load only the seeds you need with intelligent version checking</p>
+<p><strong>Django Integration</strong> - Built specifically for Django with full ORM support</p>
+<p><strong>Test-Friendly</strong> - Comprehensive test suite with function-based tests</p>
+<p><strong>Extensible</strong> - Easy to extend with custom seeders for your specific needs</p>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
+<p>Install django-synced-seeders:</p>
+<p><strong>Using uv (Recommended)</strong></p>
+<p><strong>Using pip</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>django-synced-seeders
+</pre></div>
+</div>
+<p>Add to your Django settings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># settings.py</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ... your apps</span>
+    <span class="s1">&#39;seeders&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div></td></tr></table></div>
+</div>
+<p>Run migrations:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+</pre></div>
+</div>
+<p>Create your first seeder:</p>
+<div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># myapp/seeders.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">seeds</span><span class="w"> </span><span class="kn">import</span> <span class="n">seeder_registry</span><span class="p">,</span> <span class="n">Seeder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Category</span>
+
+<span class="nd">@seeder_registry</span><span class="o">.</span><span class="n">register</span><span class="p">()</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CategorySeeder</span><span class="p">(</span><span class="n">Seeder</span><span class="p">):</span>
+    <span class="n">seed_slug</span> <span class="o">=</span> <span class="s2">&quot;categories&quot;</span>
+    <span class="n">exporting_querysets</span> <span class="o">=</span> <span class="p">(</span><span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),)</span>
+</pre></div></td></tr></table></div>
+</div>
+<p>Export and sync data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export data from current environment</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>exportseed<span class="w"> </span>categories
+<span class="c1"># Sync to another environment</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>syncseeds
+</pre></div>
+</div>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
+<p>This project is licensed under the MIT License.</p>
+<hr class="docutils" />
+<p><strong>Happy coding!</strong></p>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#using-uv-recommended">Using uv (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#using-pip">Using pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#django-settings">Django Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#run-migrations">Run Migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#verify-installation">Verify Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#management-commands">Management Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#creating-seeders">Creating Seeders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#auto-discovery">Auto-discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#version-management">Version Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/usage.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/best-practices.html">Best Practices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/best-practices.html#seeder-design">Seeder Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/best-practices.html#version-control">Version Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/best-practices.html#environment-management">Environment Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/best-practices.html#testing-strategy">Testing Strategy</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="community">
+<h2>Community<a class="headerlink" href="#community" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>GitHub</strong>: <a class="reference external" href="https://github.com/Starscribers/python-packages">Source code and issues</a></p></li>
+<li><p><strong>PyPI</strong>: <a class="reference external" href="https://pypi.org/project/django-synced-seeders/">Package releases</a></p></li>
+<li><p><strong>Discord</strong>: <a class="reference external" href="https://discord.gg/ngE8JxjDx7">Community chat</a></p></li>
+</ul>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+<section id="id1">
+<h2>Features<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><strong>Version Control for Seeds</strong> - Track and manage seed versions with automatic revision tracking</p>
+<p><strong>Environment Sync</strong> - Keep data consistent across development, staging, and production</p>
+<p><strong>Export &amp; Import</strong> - Easy data export from any environment and import to others</p>
+<p><strong>Selective Loading</strong> - Load only the seeds you need with intelligent version checking</p>
+<p><strong>Django Integration</strong> - Built specifically for Django with full ORM support</p>
+<p><strong>Test-Friendly</strong> - Comprehensive test suite with function-based tests</p>
+<p><strong>Extensible</strong> - Easy to extend with custom seeders for your specific needs</p>
+</section>
+<section id="id2">
+<h2>Quick Start<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>django-synced-seeders
+</pre></div>
+</div>
+<p>Add to your Django settings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># settings.py</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ... your apps</span>
+    <span class="s1">&#39;seeders&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div></td></tr></table></div>
+</div>
+<p>Run migrations:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+</pre></div>
+</div>
+<p>Create your first seeder:</p>
+<div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><span class="c1"># myapp/seeders.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">seeds</span><span class="w"> </span><span class="kn">import</span> <span class="n">seeder_registry</span><span class="p">,</span> <span class="n">Seeder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Category</span>
+
+<span class="nd">@seeder_registry</span><span class="o">.</span><span class="n">register</span><span class="p">()</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CategorySeeder</span><span class="p">(</span><span class="n">Seeder</span><span class="p">):</span>
+    <span class="n">seed_slug</span> <span class="o">=</span> <span class="s2">&quot;categories&quot;</span>
+    <span class="n">exporting_querysets</span> <span class="o">=</span> <span class="p">(</span><span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),)</span>
+</pre></div></td></tr></table></div>
+</div>
+<p>Export and sync data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export data</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>exportseed<span class="w"> </span>categories
+
+<span class="c1"># Sync to another environment</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>syncseeds
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>Community<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>GitHub</strong>: <a class="reference external" href="https://github.com/Starscribers/django-synced-seeders">Source code and issues</a></p></li>
+<li><p><strong>PyPI</strong>: <a class="reference external" href="https://pypi.org/project/django-synced-seeders/">Package releases</a></p></li>
+<li><p><strong>Discord</strong>: <a class="reference external" href="https://discord.gg/ngE8JxjDx7">Community chat</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id7">
+<h1>Indices and tables<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+      </div>
+
+    
+  <div class="cs-local-toc mx-4 mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
+    <strong class="d-block h6 my-2 pb-2 border-bottom">On this page</strong>
+    <nav id="TableOfContents">
+      <ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#quick-start">Quick Start</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#community">Community</a></li>
+</ul>
+
+    </nav>
+  </div>
+    
+    </main>
+  </div><div class="container footer" role="contentinfo">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4 border-top"><ul class="pb-2 mb-3 nav container border-bottom">
+  <li class="nav-item col-md-6 col">
+  </li>
+  <li class="nav-item col-md-6 col text-end">
+    <a href="getting-started/installation.html"
+       title="next chapter"
+       class="nav-link px-2 text-muted next-chapter">Installation</a>
+  </li>
+</ul>
+      <div class="container text-center text-muted pt-2 pb-2">
+          &#169; Copyright 2025, Starscribers.
+      </div>
+      <div class="container text-center text-muted pt-2 pb-2">
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+      </div>
+  </footer>
+</div>
+
+  </body>
+</html>
