@@ -12,16 +12,36 @@ from seeds.utils import get_seed_meta_path
 
 class Command(BaseCommand):
     """
-    Flushes the API Gateway stage cache.
+    Syncs seeds from registered seeders.
     """
 
+    def add_arguments(self: Self, parser) -> None:
+        """Add command arguments."""
+        parser.add_argument(
+            "tags",
+            nargs="*",
+            type=str,
+            help="Optional tags to filter seeders. If provided, only seeders with matching tags will be synced.",
+        )
+
     def handle(self: Self, *args: tuple, **kwargs: dict) -> None:
+        tags = kwargs.get("tags", [])
         self.stdout.write("[Synced Seeders] Syncing seeds...")
+
+        # Filter seeders by tags if provided
+        if tags:
+            seeders_to_sync = seeder_registry.get_by_tags(tags)
+            self.stdout.write(
+                f"[Synced Seeders] Filtering by tags: {', '.join(tags)}",
+            )
+        else:
+            seeders_to_sync = seeder_registry.registry
+
         new_seeds_loaded = 0
         meta_file = get_seed_meta_path()
         data = json.load(meta_file.open("r"))
 
-        for seed_slug, seeder in seeder_registry.registry.items():
+        for seed_slug, seeder in seeders_to_sync.items():
             seed_revision = data.get(seed_slug, 0)
             original_revision_object = (
                 SeedRevision.objects.filter(

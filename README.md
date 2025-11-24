@@ -56,6 +56,39 @@ python manage.py exportseed categories
 python manage.py syncseeds
 ```
 
+## Tagging Seeders
+
+Organize seeders with tags for targeted execution:
+
+```python
+# myapp/seeders.py
+from seeds import seeder_registry, Seeder
+from .models import User, Product
+
+@seeder_registry.register(tags="e2e")
+class E2ETestSeeder(Seeder):
+    seed_slug = "e2e_test_data"
+    exporting_querysets = (User.objects.all(),)
+
+@seeder_registry.register(tags=["development", "demo"])
+class DemoSeeder(Seeder):
+    seed_slug = "demo_data"
+    exporting_querysets = (Product.objects.all(),)
+```
+
+Run seeders by tag:
+
+```bash
+# Sync only e2e tagged seeders
+python manage.py syncseeds e2e
+
+# Sync multiple tags (union of all matching seeders)
+python manage.py syncseeds e2e development
+
+# Sync all seeders (default behavior)
+python manage.py syncseeds
+```
+
 ## Documentation
 
 📚 **Full Documentation**: [https://starscribers.github.io/django-synced-seeders/](https://starscribers.github.io/django-synced-seeders/)

@@ -38,6 +38,9 @@ class Seeder:
     # Tuple of querysets to export when creating seeds
     exporting_querysets: tuple = ()
 
+    # Optional tags for the seeder
+    tags: list[str] = []
+
     def __init__(self: Self) -> None:
         self.seed_path = (
             self.seed_path
