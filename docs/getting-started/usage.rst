@@ -29,6 +29,12 @@ Sync all available seeds to the current environment:
 
    python manage.py syncseeds
 
+   # Sync only seeders with specific tags
+   python manage.py syncseeds e2e
+
+   # Sync multiple tags (union of all matching seeders)
+   python manage.py syncseeds e2e development
+
 Creating Seeders
 ----------------
 
@@ -45,6 +51,82 @@ Create a seeder by subclassing ``Seeder`` and registering it:
    class CategorySeeder(Seeder):
        seed_slug = "categories"
        exporting_querysets = (Category.objects.all(),)
+
+Tagging Seeders
+---------------
+
+Organize seeders with tags for targeted execution. This is useful for different testing scenarios or deployment strategies.
+
+Single Tag
+~~~~~~~~~~
+
+Register a seeder with a single tag:
+
+.. code-block:: python
+   :linenos:
+
+   # myapp/seeders.py
+   from seeds import seeder_registry, Seeder
+   from .models import User
+
+   @seeder_registry.register(tags="e2e")
+   class E2ETestSeeder(Seeder):
+       seed_slug = "e2e_test_data"
+       exporting_querysets = (User.objects.all(),)
+
+Multiple Tags
+~~~~~~~~~~~~~
+
+Register a seeder with multiple tags:
+
+.. code-block:: python
+   :linenos:
+
+   # myapp/seeders.py
+   from seeds import seeder_registry, Seeder
+   from .models import Product
+
+   @seeder_registry.register(tags=["development", "demo"])
+   class DemoSeeder(Seeder):
+       seed_slug = "demo_data"
+       exporting_querysets = (Product.objects.all(),)
+
+Running Tagged Seeders
+~~~~~~~~~~~~~~~~~~~~~~
+
+Execute seeders by tag:
+
+.. code-block:: bash
+
+   # Sync only e2e tagged seeders
+   python manage.py syncseeds e2e
+
+   # Sync multiple tags (union of all matching seeders)
+   python manage.py syncseeds e2e development
+
+   # Sync all seeders (default behavior)
+   python manage.py syncseeds
+
+Common Use Cases
+~~~~~~~~~~~~~~~~
+
+**Testing Environments:**
+
+- ``e2e`` - End-to-end test data
+- ``integration`` - Integration test data
+- ``unit`` - Unit test data
+
+**Deployment Stages:**
+
+- ``development`` - Development environment data
+- ``staging`` - Staging environment data
+- ``demo`` - Demo/showcase data
+
+**Data Categories:**
+
+- ``base`` - Essential base data (users, roles)
+- ``sample`` - Sample content for testing
+- ``reference`` - Reference data (countries, currencies)
 
 Auto-discovery
 ---------------

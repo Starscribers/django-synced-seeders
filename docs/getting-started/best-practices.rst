@@ -51,6 +51,92 @@ Handle related data carefully:
            ProductVariant.objects.all(), # Dependent models last
        )
 
+Tagging Strategy
+~~~~~~~~~~~~~~~~
+
+Use tags to organize seeders by purpose and environment:
+
+.. code-block:: python
+   :linenos:
+
+   # Testing tags - organize by test type
+   @seeder_registry.register(tags="e2e")
+   class E2EUserSeeder(Seeder):
+       seed_slug = "e2e_users"
+       exporting_querysets = (User.objects.all(),)
+
+   @seeder_registry.register(tags=["integration", "e2e"])
+   class IntegrationTestSeeder(Seeder):
+       seed_slug = "integration_data"
+       exporting_querysets = (Product.objects.all(),)
+
+   # Environment tags - organize by deployment stage
+   @seeder_registry.register(tags="development")
+   class DevSampleDataSeeder(Seeder):
+       seed_slug = "dev_samples"
+       exporting_querysets = (Product.objects.all(),)
+
+   @seeder_registry.register(tags="demo")
+   class DemoSeeder(Seeder):
+       seed_slug = "demo_showcase"
+       exporting_querysets = (Product.objects.all(),)
+
+   # Data category tags - organize by data type
+   @seeder_registry.register(tags="base")
+   class BaseConfigSeeder(Seeder):
+       seed_slug = "base_config"
+       exporting_querysets = (
+           Settings.objects.all(),
+           Roles.objects.all(),
+       )
+
+Recommended Tag Conventions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Testing Environments:**
+
+- ``e2e`` - End-to-end test data
+- ``integration`` - Integration test fixtures
+- ``unit`` - Unit test data
+- ``performance`` - Performance test datasets
+
+**Deployment Stages:**
+
+- ``development`` - Development environment data
+- ``staging`` - Staging environment data
+- ``demo`` - Demo/showcase data
+- ``production`` - Production-safe reference data
+
+**Data Categories:**
+
+- ``base`` - Essential base data (users, roles, settings)
+- ``reference`` - Reference data (countries, currencies)
+- ``sample`` - Sample content for testing
+- ``migration`` - Data migration seeders
+
+**Best Practices for Tags:**
+
+- Use lowercase names for consistency
+- Keep tag names short and descriptive
+- Document your tagging convention in README
+- Don't over-tag - 1-3 tags per seeder is usually enough
+- Use tags to enable selective deployment
+
+.. code-block:: bash
+
+   # In CI/CD pipelines
+   # Development: Load all development data
+   python manage.py syncseeds development
+
+   # Staging: Load demo and integration test data
+   python manage.py syncseeds demo integration
+
+   # Production: Load only base reference data
+   python manage.py syncseeds base reference
+
+   # E2E tests: Load only test-specific data
+   python manage.py syncseeds e2e
+
 Version Control
 ---------------
 

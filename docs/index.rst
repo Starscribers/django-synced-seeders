@@ -88,14 +88,24 @@ Create your first seeder:
        seed_slug = "categories"
        exporting_querysets = (Category.objects.all(),)
 
+   # Optional: Organize seeders with tags
+   @seeder_registry.register(tags="e2e")
+   class E2ETestSeeder(Seeder):
+       seed_slug = "e2e_test_data"
+       exporting_querysets = (Category.objects.all(),)
+
 Export and sync data:
 
 .. code-block:: bash
 
    # Export data from current environment
    python manage.py exportseed categories
-   # Sync to another environment
+
+   # Sync all seeders to another environment
    python manage.py syncseeds
+
+   # Sync only specific tagged seeders
+   python manage.py syncseeds e2e
 
 License
 -------
@@ -117,92 +127,6 @@ Table of Contents
    getting-started/usage
    getting-started/best-practices
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Guides
-
-   guides/concepts
-   guides/examples
-
-
-Community
----------
-
-* **GitHub**: `Source code and issues <https://github.com/Starscribers/django-synced-seeders>`_
-* **PyPI**: `Package releases <https://pypi.org/project/django-synced-seeders/>`_
-* **Discord**: `Community chat <https://discord.gg/ngE8JxjDx7>`_
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-Features
---------
-
-**Version Control for Seeds** - Track and manage seed versions with automatic revision tracking
-
-**Environment Sync** - Keep data consistent across development, staging, and production
-
-**Export & Import** - Easy data export from any environment and import to others
-
-**Selective Loading** - Load only the seeds you need with intelligent version checking
-
-**Django Integration** - Built specifically for Django with full ORM support
-
-**Test-Friendly** - Comprehensive test suite with function-based tests
-
-**Extensible** - Easy to extend with custom seeders for your specific needs
-
-Quick Start
------------
-
-.. code-block:: bash
-
-   pip install django-synced-seeders
-
-Add to your Django settings:
-
-.. code-block:: python
-   :linenos:
-
-   # settings.py
-   INSTALLED_APPS = [
-       # ... your apps
-       'seeders',
-   ]
-
-Run migrations:
-
-.. code-block:: bash
-
-   python manage.py migrate
-
-Create your first seeder:
-
-.. code-block:: python
-   :linenos:
-
-   # myapp/seeders.py
-   from seeds import seeder_registry, Seeder
-   from .models import Category
-
-   @seeder_registry.register()
-   class CategorySeeder(Seeder):
-       seed_slug = "categories"
-       exporting_querysets = (Category.objects.all(),)
-
-Export and sync data:
-
-.. code-block:: bash
-
-   # Export data
-   python manage.py exportseed categories
-
-   # Sync to another environment
-   python manage.py syncseeds
 
 Community
 ---------
