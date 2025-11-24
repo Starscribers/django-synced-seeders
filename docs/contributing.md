@@ -141,10 +141,10 @@ git checkout -b feature/your-feature-name
 ```python
 def export_seed(self, seeder_slug: str) -> None:
     """Export seed data for the given seeder.
-    
+
     Args:
         seeder_slug: The slug of the seeder to export
-        
+
     Raises:
         SeederNotFound: If the seeder doesn't exist
     """

@@ -8,7 +8,7 @@ Using uv (Recommended)
 
 .. code-block:: bash
 
-   
+
    # Install django-synced-seeders
    uv add django-synced-seeders
 

@@ -28,8 +28,9 @@ repos:
     hooks:
       - id: mypy
         name: mypy
-        entry: mypy
+        entry: .venv/bin/mypy
         language: system
         types: [python]
         exclude: ^tests/
         args: ["--config-file", "mypy.ini"]
+        require_serial: true

@@ -16,7 +16,7 @@ Export seed data from your current environment:
 .. code-block:: bash
 
    python manage.py exportseed <seeder_slug>
-   
+
    # Example
    python manage.py exportseed categories
 

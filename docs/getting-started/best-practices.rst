@@ -27,7 +27,7 @@ Keep It Simple
        seed_slug = "everything"  # Too vague
        exporting_querysets = (
            User.objects.all(),
-           Product.objects.all(), 
+           Product.objects.all(),
            Order.objects.all(),  # Unrelated to categories
            # ... many more
        )
@@ -66,7 +66,7 @@ Seed File Management
    # Good commit practices
    git add seeds/
    git commit -m "feat(seeds): add initial product categories
-   
+
    - Add 12 main categories
    - Include subcategories for electronics
    - Update revision to v3"
@@ -108,7 +108,7 @@ Init seed data in tests:
 
 .. code-block:: python
     :linenos:
-   
+
     # conftest.py
     import pytest
     from django.core.management import call_command

@@ -1,7 +1,7 @@
 import os
 
 DEBUG = True
-SECRET_KEY = "fake-key"
+SECRET_KEY = "fake-key"  # nosec B105
 INSTALLED_APPS = [
     "playground",
     "seeds",

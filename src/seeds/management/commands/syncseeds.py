@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from typing import TYPE_CHECKING, Any
 
 from django.core.management.base import BaseCommand
 from typing_extensions import Self
@@ -9,13 +10,16 @@ from seeds import seeder_registry
 from seeds.models import SeedRevision
 from seeds.utils import get_seed_meta_path
 
+if TYPE_CHECKING:
+    from argparse import ArgumentParser
+
 
 class Command(BaseCommand):
     """
     Syncs seeds from registered seeders.
     """
 
-    def add_arguments(self: Self, parser) -> None:
+    def add_arguments(self: Self, parser: ArgumentParser) -> None:
         """Add command arguments."""
         parser.add_argument(
             "tags",
@@ -24,8 +28,9 @@ class Command(BaseCommand):
             help="Optional tags to filter seeders. If provided, only seeders with matching tags will be synced.",
         )
 
-    def handle(self: Self, *args: tuple, **kwargs: dict) -> None:
-        tags = kwargs.get("tags", [])
+    def handle(self: Self, *args: tuple, **kwargs: dict[str, Any]) -> None:
+        tags_raw: Any = kwargs.get("tags", [])
+        tags: list[str] = tags_raw if isinstance(tags_raw, list) else []
         self.stdout.write("[Synced Seeders] Syncing seeds...")
 
         # Filter seeders by tags if provided

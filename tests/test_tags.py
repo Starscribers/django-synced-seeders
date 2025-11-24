@@ -1,4 +1,5 @@
 """Tests for seeder tag functionality."""
+
 from __future__ import annotations
 
 import pytest
@@ -7,9 +8,10 @@ import pytest
 @pytest.fixture
 def registry():
     """Get the seeder registry with all seeders loaded."""
-    from seeds import seeder_registry
     # Force re-import of test seeders to ensure tags are registered
     import tests.seeders  # noqa: F401
+    from seeds import seeder_registry
+
     return seeder_registry
 
 
@@ -26,7 +28,7 @@ def test_register_with_multiple_tags(registry):
     # Check that integration seeder is registered with both tags
     integration_seeders = registry.get_by_tags("integration")
     assert "integration-test-seeder" in integration_seeders
-    
+
     e2e_seeders = registry.get_by_tags("e2e")
     assert "integration-test-seeder" in e2e_seeders
 
@@ -55,7 +57,7 @@ def test_tags_attribute_set_on_seeder_class(registry):
     seeder_class = registry.registry["e2e-test-seeder"]
     assert hasattr(seeder_class, "tags")
     assert "e2e" in seeder_class.tags
-    
+
     seeder_class = registry.registry["integration-test-seeder"]
     assert hasattr(seeder_class, "tags")
     assert "integration" in seeder_class.tags

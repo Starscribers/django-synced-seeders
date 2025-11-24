@@ -26,17 +26,17 @@ An easy-to-use seeder manager to keep seed data in sync across multiple environm
 Features
 --------
 
-**Version Control for Seeds** - Track and manage seed versions with automatic revision tracking  
+**Version Control for Seeds** - Track and manage seed versions with automatic revision tracking
 
-**Environment Sync** - Keep data consistent across development, staging, and production  
+**Environment Sync** - Keep data consistent across development, staging, and production
 
-**Export & Import** - Easy data export from any environment and import to others  
+**Export & Import** - Easy data export from any environment and import to others
 
-**Selective Loading** - Load only the seeds you need with intelligent version checking  
+**Selective Loading** - Load only the seeds you need with intelligent version checking
 
-**Django Integration** - Built specifically for Django with full ORM support  
+**Django Integration** - Built specifically for Django with full ORM support
 
-**Test-Friendly** - Comprehensive test suite with function-based tests  
+**Test-Friendly** - Comprehensive test suite with function-based tests
 
 **Extensible** - Easy to extend with custom seeders for your specific needs
 
@@ -94,7 +94,7 @@ Export and sync data:
 
    # Export data from current environment
    python manage.py exportseed categories
-   # Sync to another environment  
+   # Sync to another environment
    python manage.py syncseeds
 
 License
@@ -200,7 +200,7 @@ Export and sync data:
 
    # Export data
    python manage.py exportseed categories
-   
+
    # Sync to another environment
    python manage.py syncseeds
 

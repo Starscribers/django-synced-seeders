@@ -13,9 +13,9 @@ if TYPE_CHECKING:
 class TaggedRegistry(Registry):
     """Registry that supports tagging seeders."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:  # type: ignore[no-untyped-def]
         super().__init__(*args, **kwargs)
-        self._tags = {}
+        self._tags: dict[str, list[str]] = {}
 
     def register(
         self,
@@ -73,7 +73,9 @@ class TaggedRegistry(Registry):
             if tag in self._tags:
                 matching_keys.update(self._tags[tag])
 
-        return {key: self._registry[key] for key in matching_keys if key in self._registry}
+        return {
+            key: self._registry[key] for key in matching_keys if key in self._registry
+        }
 
 
 seeder_registry: TaggedRegistry = TaggedRegistry(
