@@ -35,21 +35,70 @@ Keep It Simple
 Data Relationships
 ~~~~~~~~~~~~~~~~~~
 
-Handle related data carefully:
+Handle related data carefully using priorities to ensure dependencies load first:
 
 .. code-block:: python
    :linenos:
 
-   # Include related models in logical order
+   # Use priority to control load order
+   @seeder_registry.register()
+   class CategorySeeder(Seeder):
+       seed_slug = "categories"
+       priority = 10  # Load first
+       exporting_querysets = (Category.objects.all(),)
+
+   @seeder_registry.register()
+   class BrandSeeder(Seeder):
+       seed_slug = "brands"
+       priority = 10  # Load first (same priority as categories)
+       exporting_querysets = (Brand.objects.all(),)
+
    @seeder_registry.register()
    class ProductSeeder(Seeder):
        seed_slug = "products"
-       exporting_querysets = (
-           Category.objects.all(),      # Dependencies first
-           Brand.objects.all(),         # Dependencies first
-           Product.objects.all(),       # Main model
-           ProductVariant.objects.all(), # Dependent models last
-       )
+       priority = 20  # Load after categories and brands
+       exporting_querysets = (Product.objects.all(),)
+
+   @seeder_registry.register()
+   class ProductVariantSeeder(Seeder):
+       seed_slug = "product_variants"
+       priority = 30  # Load after products
+       exporting_querysets = (ProductVariant.objects.all(),)
+
+Priority Patterns for Foreign Keys
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When you have models with foreign key relationships, use priorities to prevent database integrity errors:
+
+.. code-block:: python
+   :linenos:
+
+   # Example: E-commerce schema
+   # Country -> Region -> Store -> Employee
+
+   @seeder_registry.register()
+   class CountrySeeder(Seeder):
+       seed_slug = "countries"
+       priority = 1  # No dependencies
+       exporting_querysets = (Country.objects.all(),)
+
+   @seeder_registry.register()
+   class RegionSeeder(Seeder):
+       seed_slug = "regions"
+       priority = 2  # Depends on Country
+       exporting_querysets = (Region.objects.all(),)
+
+   @seeder_registry.register()
+   class StoreSeeder(Seeder):
+       seed_slug = "stores"
+       priority = 3  # Depends on Region
+       exporting_querysets = (Store.objects.all(),)
+
+   @seeder_registry.register()
+   class EmployeeSeeder(Seeder):
+       seed_slug = "employees"
+       priority = 4  # Depends on Store
+       exporting_querysets = (Employee.objects.all(),)
 
 Tagging Strategy
 ~~~~~~~~~~~~~~~~
@@ -171,7 +220,7 @@ Environment Management
 ----------------------
 
 Auto-sync in entrypoint scripts
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 

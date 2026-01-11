@@ -1,6 +1,6 @@
 [project]
 name = "django-synced-seeders"
-version = "0.3.0"
+version = "0.4.0"
 description = "An easy-to-use seeder manager to keep seed data in sync across multiple environments."
 readme = "README.md"
 authors = [

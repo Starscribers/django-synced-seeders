@@ -41,6 +41,7 @@ from .models import Category
 @seeder_registry.register()
 class CategorySeeder(Seeder):
     seed_slug = "categories"
+    priority = 10  # Lower numbers load first (default: 100)
     exporting_querysets = (Category.objects.all(),)
 ```
 

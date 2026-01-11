@@ -127,3 +127,74 @@ def test_delete_existing_behavior(tmp_path: Path) -> None:
     # Should have both existing and seed data (no deletion)
     # Note: This might create duplicates depending on the seed data
     assert ExamplePresetModel.objects.count() >= 2
+
+
+@pytest.mark.django_db
+def test_seeder_priority_ordering(tmp_path: Path) -> None:
+    """Test that seeders are loaded in priority order."""
+
+    # Track the order in which seeders are called
+    load_order = []
+
+    class HighPrioritySeeder(Seeder):
+        seed_slug = "high_priority"
+        priority = 10
+        seed_path = tmp_path / "high.json"
+
+        def load_seed(self):
+            load_order.append("high_priority")
+            super().load_seed()
+
+    class MediumPrioritySeeder(Seeder):
+        seed_slug = "medium_priority"
+        priority = 50
+        seed_path = tmp_path / "medium.json"
+
+        def load_seed(self):
+            load_order.append("medium_priority")
+            super().load_seed()
+
+    class LowPrioritySeeder(Seeder):
+        seed_slug = "low_priority"
+        priority = 100
+        seed_path = tmp_path / "low.json"
+
+        def load_seed(self):
+            load_order.append("low_priority")
+            super().load_seed()
+
+    # Create empty seed files
+    for filename in ["high.json", "medium.json", "low.json"]:
+        (tmp_path / filename).write_text("[]")
+
+    # Manually create a dictionary of seeders to simulate registry
+    seeders = {
+        "high_priority": HighPrioritySeeder,
+        "medium_priority": MediumPrioritySeeder,
+        "low_priority": LowPrioritySeeder,
+    }
+
+    # Sort by priority like the syncseeds command does
+    sorted_seeders = sorted(
+        seeders.items(),
+        key=lambda item: item[1].priority,
+    )
+
+    # Load them in sorted order
+    for _, seeder_class in sorted_seeders:
+        seeder_instance = seeder_class()
+        seeder_instance.load_seed()
+
+    # Verify they were loaded in priority order
+    assert load_order == ["high_priority", "medium_priority", "low_priority"]
+
+
+@pytest.mark.django_db
+def test_default_priority() -> None:
+    """Test that seeders have a default priority of 100."""
+
+    class DefaultPrioritySeeder(Seeder):
+        seed_slug = "default_test"
+
+    seeder = DefaultPrioritySeeder()
+    assert seeder.priority == 100

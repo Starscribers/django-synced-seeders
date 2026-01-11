@@ -52,6 +52,101 @@ Create a seeder by subclassing ``Seeder`` and registering it:
        seed_slug = "categories"
        exporting_querysets = (Category.objects.all(),)
 
+Setting Load Priority
+---------------------
+
+Use the ``priority`` attribute to control the order in which seeders are loaded. This is essential when you have foreign key dependencies between seeders.
+
+Lower priority numbers load first (default is 100).
+
+.. code-block:: python
+   :linenos:
+
+   # myapp/seeders.py
+   from seeds import seeder_registry, Seeder
+   from .models import Category, Product
+
+   @seeder_registry.register()
+   class CategorySeeder(Seeder):
+       seed_slug = "categories"
+       priority = 10  # Load first
+       exporting_querysets = (Category.objects.all(),)
+
+   @seeder_registry.register()
+   class ProductSeeder(Seeder):
+       seed_slug = "products"
+       priority = 20  # Load after categories
+       exporting_querysets = (Product.objects.all(),)
+
+Common Priority Patterns
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Base Data (Priority 1-20):**
+
+- User roles and permissions
+- System configuration
+- Reference data (countries, currencies)
+
+**Primary Entities (Priority 21-50):**
+
+- Users, organizations
+- Categories, taxonomies
+- Core domain entities
+
+**Dependent Data (Priority 51-100):**
+
+- Content items referencing categories
+- Orders referencing users and products
+- Any data with foreign key dependencies
+
+Example with Foreign Keys
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Consider an e-commerce application with these models:
+
+.. code-block:: python
+
+   # models.py
+   class Category(models.Model):
+       name = models.CharField(max_length=100)
+
+   class Product(models.Model):
+       name = models.CharField(max_length=100)
+       category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+   class Review(models.Model):
+       product = models.ForeignKey(Product, on_delete=models.CASCADE)
+       rating = models.IntegerField()
+
+The seeders should be prioritized to prevent foreign key errors:
+
+.. code-block:: python
+
+   # myapp/seeders.py
+   from seeds import seeder_registry, Seeder
+   from .models import Category, Product, Review
+
+   @seeder_registry.register()
+   class CategorySeeder(Seeder):
+       seed_slug = "categories"
+       priority = 10  # Load first - no dependencies
+       exporting_querysets = (Category.objects.all(),)
+
+   @seeder_registry.register()
+   class ProductSeeder(Seeder):
+       seed_slug = "products"
+       priority = 20  # Load after categories
+       exporting_querysets = (Product.objects.all(),)
+
+   @seeder_registry.register()
+   class ReviewSeeder(Seeder):
+       seed_slug = "reviews"
+       priority = 30  # Load last - depends on products
+       exporting_querysets = (Review.objects.all(),)
+
+When you run ``python manage.py syncseeds``, the seeders will load in order:
+categories → products → reviews, preventing any foreign key constraint violations.
+
 Tagging Seeders
 ---------------
 

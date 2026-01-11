@@ -41,6 +41,10 @@ class Seeder:
     # Optional tags for the seeder
     tags: list[str] = []
 
+    # Priority for load order (lower number loads first)
+    # Use this to ensure dependencies are loaded before dependent data
+    priority: int = 100
+
     def __init__(self: Self) -> None:
         self.seed_path = (
             self.seed_path

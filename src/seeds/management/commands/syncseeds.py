@@ -46,7 +46,13 @@ class Command(BaseCommand):
         meta_file = get_seed_meta_path()
         data = json.load(meta_file.open("r"))
 
-        for seed_slug, seeder in seeders_to_sync.items():
+        # Sort seeders by priority (lower number loads first)
+        sorted_seeders = sorted(
+            seeders_to_sync.items(),
+            key=lambda item: item[1].priority,
+        )
+
+        for seed_slug, seeder in sorted_seeders:
             seed_revision = data.get(seed_slug, 0)
             original_revision_object = (
                 SeedRevision.objects.filter(
